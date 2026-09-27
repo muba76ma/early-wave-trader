@@ -27,11 +27,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-cov ruff  # testing + linting tools
+          pip install pytest pytest-cov ruff mypy
 
       - name: Lint with Ruff
         run: |
           ruff check src/ tests/ scripts/
+
+      - name: Type check with mypy
+        run: |
+          mypy src/ --strict
 
       - name: Run tests
         run: |
